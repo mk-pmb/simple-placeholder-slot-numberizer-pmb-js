@@ -46,6 +46,29 @@ and modifying them will modify behavior for future encounters.
 
 
 
+Bonus knowledge
+---------------
+
+* For arbitrarily fancy render functions, make `pattern` an object that has
+  a `join` method. It will be invoked with one single argument,
+  a number primitive.
+* The default `pattern` with default `offset` is useful for…
+  * up to 9 JS RegExp capture groups.
+  * up to 9 bash function arguments.
+    (`bash -c 'f() { echo "a$42z"; }; f b{1..100}y'` &rarr; `ab4y2z`)
+    * If you want more, use `pattern: ['${', '}']`
+      (`bash -c 'f() { echo "a${42}z"; }; f b{1..100}y'` &rarr; `ab42yz`)
+  * [PostgreSQL positional parameters][pgposparam] up to more than 32k
+    (haven't tested though).
+    * However, function arguments are limited to 100.
+      [You can use arrays though.][pgfunc100]
+
+
+  [pgposparam]: https://www.postgresql.org/docs/current/sql-expressions.html#SQL-EXPRESSIONS-PARAMETERS-POSITIONAL
+  [pgfunc100]: https://stackoverflow.com/questions/17421265/
+
+
+
 Usage
 -----
 
