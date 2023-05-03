@@ -44,6 +44,11 @@ distinct `x` and return a string based on that number.
 The `numb` function will carry all the keys that are supported in `opt`,
 and modifying them will modify behavior for future encounters.
 
+In addition, the `numb` function will carry these other properties:
+
+* `tag`:
+  A renderer function that will `numb()` all slot values in a tagged string.
+
 
 
 Bonus knowledge
