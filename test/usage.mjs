@@ -13,9 +13,9 @@ test('Flags database, traditional', (t) => {
   const numb = makeNumberizer();
   const query = ('SELECT * FROM "flags"'
     + ' WHERE "flags"."pattern" = ' + numb('striped')
-    + '   AND "flags"."color_top" = ' + numb('white')
-    + '   AND "flags"."color_middle" = ' + numb('red')
-    + '   AND "flags"."color_bottom" = ' + numb('white')
+    + '   AND "flags"."color_top" = ' + numb('red')
+    + '   AND "flags"."color_middle" = ' + numb('white')
+    + '   AND "flags"."color_bottom" = ' + numb('red')
     + ' LIMIT 1;');
   t.equal(query, 'SELECT * FROM "flags"'
     + ' WHERE "flags"."pattern" = $1'
@@ -23,7 +23,7 @@ test('Flags database, traditional', (t) => {
     + '   AND "flags"."color_middle" = $3'
     + '   AND "flags"."color_bottom" = $2'
     + ' LIMIT 1;');
-  t.same(numb.values, ['striped', 'white', 'red']);
+  t.same(numb.values, ['striped', 'red', 'white']);
   t.same(map2obj(numb.dict), {
     striped: { i: 0, s: '$1' },
     white: { i: 1, s: '$2' },
